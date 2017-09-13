@@ -11,7 +11,7 @@ class ActivityTest < Minitest::Test
     participant1_hash = {name: 'beth', amount: 5}
     participant2_hash = {name: 'aaron', amount: 10}
     @activity = Activity.new('fun times', 20)
-    
+
     activity.add_participant(participant1_hash)
     activity.add_participant(participant2_hash)
   end
@@ -39,6 +39,16 @@ class ActivityTest < Minitest::Test
 
   def test_participant_has_amount_paid
     assert_equal 5, activity.participants[0][:amount]
+  end
+
+  def test_it_can_split_total_cost_evenly_btwn_participants
+    assert_equal 10, activity.split_cost
+  end
+
+  def test_it_knows_how_much_participant_owes
+    activity.split_cost
+    participant_amount = activity.participants[0][:amount]
+    assert_equal 5, activity.debt(participant_amount)
   end
 
 end

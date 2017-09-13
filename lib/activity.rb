@@ -1,6 +1,9 @@
 class Activity
 
-  attr_reader :name, :participants, :total_cost
+  attr_reader :name,
+              :participants,
+              :total_cost,
+              :participant_cost
 
   def initialize(name, total_cost)
     @name = name
@@ -12,9 +15,12 @@ class Activity
     @participants << participant_hash
   end
 
+  def split_cost
+    @participant_cost = total_cost / participants.length
+  end
+
+  def debt(participant_amount)
+    participant_cost - participant_amount
+  end
+
 end
-
-
-# @participant_hash = participant_hash
-# @participant = participant_hash[:name]
-# @amount_paid = participant_hash[:amount]
