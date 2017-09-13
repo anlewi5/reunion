@@ -1,12 +1,20 @@
 class Activity
 
-  attr_reader :name, :participant_hash, :participant, :amount_paid
+  attr_reader :name, :participants, :total_cost
 
-  def initialize(name, participant_hash)
+  def initialize(name, total_cost)
     @name = name
-    @participant_hash = participant_hash
-    @participant = participant_hash[:name]
-    @amount_paid = participant_hash[:amount]
+    @total_cost = total_cost
+    @participants = []
+  end
+
+  def add_participant(participant_hash)
+    @participants << participant_hash
   end
 
 end
+
+
+# @participant_hash = participant_hash
+# @participant = participant_hash[:name]
+# @amount_paid = participant_hash[:amount]
